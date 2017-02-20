@@ -12,7 +12,7 @@ class graph
 		pair<int,pair<int,int> > *p,*result;
 		list<int> *temp;
 		bool *arr;
-		int *key;
+		int *key,*parent;
 	public:
 		void set(int v,int e)
 		{
@@ -20,6 +20,7 @@ class graph
 			E=e;
 			arr=new bool [V];
 			key=new int [V];
+			parent=new int[V];
 			p=new pair<int,pair<int,int> > [E];
 			result=new pair<int,pair<int,int> > [E];
 			temp=new list<int> [V];
@@ -84,12 +85,22 @@ void graph::prims()
 			if(arr[*it]==false&&key[*it]>p[l].first)
 			{
 				key[*it]=p[l].first;
-				result[m].first=p[l].first;
-				result[m].second.first=k;
-				result[m].second.second=*it;
-				m++;
+				parent[*it]=k;
 			}
 		}
+	}
+	for(i=1;i<V;i++)
+	{
+		for(h=0;h<j;h++)
+			if(p[h].second.first==parent[i]&&p[h].second.second==i)
+			{
+				l=h;
+				break;
+			}
+	result[m].first=p[l].first;
+	result[m].second.first=parent[i];
+	result[m].second.second=i;
+	m++;
 	}
 
 }
