@@ -78,7 +78,7 @@ void graph::prims()
 
 			//to look for the index where k and *it vertices are stored in p array
 			for(h=0;h<j;h++)
-				if(p[h].second.first==k&&p[h].second.second==*it)
+				if((p[h].second.first==k&&p[h].second.second==*it)||(p[h].second.first==k&&p[h].second.second==*it))
 					l=h;
 
 			//to find the minimum edge
